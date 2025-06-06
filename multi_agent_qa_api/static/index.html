@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports PDF Q&A System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ask Your Sports PDFs!</h1>
+        <p>Enter a question below. Our AI will search your loaded PDF documents (basketball_rules.pdf, football_history.pdf, olympic_games_facts.pdf) to provide an answer, summary, and citations.</p>
+        
+        <form id="queryForm">
+            <textarea id="queryInput" placeholder="e.g., What are the rules of basketball? Who won the last World Cup?"></textarea>
+            <button type="submit" id="submitButton">Get Answer</button>
+        </form>
+
+        <div id="loading" class="hidden">
+            <div class="spinner"></div>
+            <p>Processing your query... This might take a moment.</p>
+        </div>
+
+        <div id="results" class="hidden">
+            <h2>Results</h2>
+            <div class="result-section">
+                <h3>Answer:</h3>
+                <p id="answerText"></p>
+            </div>
+            <div class="result-section">
+                <h3>Summary:</h3>
+                <p id="summaryText"></p>
+            </div>
+            <div class="result-section">
+                <h3>Citations:</h3>
+                <ul id="citationsList"></ul>
+            </div>
+        </div>
+
+        <div id="error" class="hidden">
+            <h2>Error!</h2>
+            <p id="errorMessage"></p>
+            <p>Please try again or check the server logs for more details.</p>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
