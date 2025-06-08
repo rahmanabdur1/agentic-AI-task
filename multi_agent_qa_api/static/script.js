@@ -1,4 +1,4 @@
-// multi_agent_sports_qa/static/script.js
+
 document.addEventListener('DOMContentLoaded', () => {
     const queryForm = document.getElementById('queryForm');
     const queryInput = document.getElementById('queryInput');
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const errorMessage = document.getElementById('errorMessage');
 
     queryForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault(); 
 
         const query = queryInput.value.trim();
         if (!query) {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Hide previous results/errors, show loading
+       
         resultsDiv.classList.add('hidden');
         errorDiv.classList.add('hidden');
         loadingDiv.classList.remove('hidden');
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         queryInput.disabled = true;
 
         try {
-            // Make API call to the FastAPI backend
+       
             const response = await fetch('/query', {
                 method: 'POST',
                 headers: {
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) {
                 // If response is not OK (e.g., 400, 500 status)
                 const errorData = await response.json();
-                // Use the 'detail' field from FastAPI's HTTPException response
+           
                 throw new Error(errorData.detail || `Server error! Status: ${response.status}`);
             }
 
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             answerText.textContent = data.answer || 'No answer found.';
             summaryText.textContent = data.summary || 'No summary provided.';
             
-            citationsList.innerHTML = ''; // Clear previous citations
+            citationsList.innerHTML = ''; 
             if (data.citations && data.citations.length > 0) {
                 data.citations.forEach(citation => {
                     const li = document.createElement('li');

@@ -1,4 +1,4 @@
-# multi_agent_sports_qa/agent_system.py
+
 
 import os
 from typing import List, Dict, Tuple
@@ -50,16 +50,16 @@ class AgentSystem:
                         return HumanMessage(content="This is a general response from the Dummy LLM.")
             self.llm = DummyChatOpenAI()
         else:
-            # Using GPT-4o for better reasoning and tool-calling capabilities
+    
             self.llm = ChatOpenAI(model="gpt-4o", temperature=0.7) 
 
         # --- Embedding Model & Text Splitter ---
-        # BGE (BAAI/bge-small-en-v1.5) is a good general-purpose embedding model.
+      
         self.embedding_model = HuggingFaceBgeEmbeddings(model_name="BAAI/bge-small-en-v1.5")
         self.text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
 
         # --- PDF Document Loading and Processing ---
-        self._load_and_process_pdfs() # Calls the method to load PDFs from 'docs/'
+        self._load_and_process_pdfs() 
         
         self._setup_tools()
         self._setup_agent_executor()
@@ -74,7 +74,7 @@ class AgentSystem:
         # Ensure the directory exists
         if not os.path.exists(pdf_directory):
             print(f"Error: Directory '{pdf_directory}' not found. Please create it and place your PDFs inside.")
-            self.vectorstore = None # Indicate no docs loaded
+            self.vectorstore = None 
             self.retriever = None
             return
 
@@ -302,7 +302,4 @@ class AgentSystem:
                 "citations": ["N/A"]
             }
 
-# Initialize the AgentSystem instance globally when this module is imported.
-# This ensures that the LLM, embeddings, and vector store are loaded only once
-# when the FastAPI application starts.
 agent_system_instance = AgentSystem()

@@ -1,9 +1,8 @@
-# multi_agent_sports_qa/main.py
 
-from fastapi import FastAPI, HTTPException, Request # Import Request for templates
-from fastapi.responses import HTMLResponse # For returning HTML directly
-from fastapi.staticfiles import StaticFiles # To serve CSS/JS
-from fastapi.templating import Jinja2Templates # For HTML templating (though simple in this case)
+from fastapi import FastAPI, HTTPException, Request 
+from fastapi.responses import HTMLResponse 
+from fastapi.staticfiles import StaticFiles 
+from fastapi.templating import Jinja2Templates 
 from pydantic import BaseModel
 from dotenv import load_dotenv
 import os
@@ -12,8 +11,7 @@ from typing import List
 # Load environment variables from .env file at the very beginning of the application startup.
 load_dotenv()
 
-# Import your agent system. The singleton instance will be created and initialized
-# automatically when this module is imported.
+
 from agent_system import agent_system_instance
 
 # Initialize the FastAPI application
@@ -26,8 +24,7 @@ app = FastAPI(
 # Mount the static files directory. Files in 'static' can be accessed via /static/...
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Configure Jinja2Templates to load templates from the 'static' directory
-# This allows FastAPI to render HTML files.
+
 templates = Jinja2Templates(directory="static")
 
 # Pydantic model for validating the incoming request body for the API endpoint
